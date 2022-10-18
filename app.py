@@ -41,6 +41,7 @@ def apiDeteksi():
 		input_petal_length = float(request.form['petal_length'])
 		input_petal_width  = float(request.form['petal_width'])
 		
+		'''
 		# Prediksi kelas atau spesies bunga iris berdasarkan data pengukuran yg diberikan pengguna
 		df_test = pd.DataFrame(data={
 			"SepalLengthCm" : [input_sepal_length],
@@ -63,6 +64,11 @@ def apiDeteksi():
 		return jsonify({
 			"prediksi": hasil_prediksi,
 			"gambar_prediksi" : gambar_prediksi
+		})
+		'''
+		return jsonify({
+			"prediksi": "setosa",
+			"gambar_prediksi" : '/static/images/iris_setosa.jpg'
 		})
 
 # =[Main]========================================
