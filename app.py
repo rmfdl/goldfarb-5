@@ -16,7 +16,7 @@ from joblib import load
 # =[Variabel Global]=============================
 
 app   = Flask(__name__, static_url_path='/static')
-model = None
+model = load('model_iris_dt.model')
 
 # =[Routing]=====================================
 
@@ -27,7 +27,7 @@ def beranda():
 
 # [Routing untuk API]	
 @app.route("/api/deteksi",methods=['POST'])
-def apiDeteksi(model=model):
+def apiDeteksi():
 	# Nilai default untuk variabel input atau features (X) ke model
 	input_sepal_length = 5.1
 	input_sepal_width  = 3.5
@@ -76,7 +76,7 @@ def apiDeteksi(model=model):
 if __name__ == '__main__':
 	
 	# Load model yang telah ditraining
-	model = load('model_iris_dt.model')
+	# model = load('model_iris_dt.model')
 
 	# Run Flask di localhost 
 	app.run(host="localhost", port=5000, debug=True)
