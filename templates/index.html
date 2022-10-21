@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<!-- Judul Halaman -->
-	<title>Orbit Future Academy</title>
+	<title>Goldfarb 5</title>
 	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,9 +27,9 @@
 			
 			<!-- Logo -->
 			<div class="navbar-header">
-				<img src={{ url_for('static', filename='/images/orbit_logo.jpg') }} alt="Orbit Logo" 
-				width="50" height="50" align="left">
-				<a class="navbar-brand" href="#halamanku">&#160; Orbit Future Academy</a>
+				<img src={{ url_for('static', filename='/images/golfarb5.PNG') }} alt="Orbit Logo" 
+				width="80" height="80" align="left">
+				<a class="navbar-brand" href="#halamanku">&#160; Goldfarb 5</a>
 			</div>
 			
 			<!-- Daftar Halaman -->
@@ -67,7 +67,7 @@
 				<nav id="navgo" class="navbar" style="background-color:#ffffff;z-index: 0;">
 					<ul class="nav nav-pills">
 						<li class="nav-item">
-							<a class="btn btn-default btn-lg" href="#aplikasi" style="background-color:#28ace5">Mulai</a>
+							<a class="btn btn-default btn-lg" href="#aplikasi" style="background-color:#ec5800">Start</a>
 						</li>
 					</ul>
 				</nav>
@@ -97,23 +97,23 @@
 					<div class="form-group" style="margin-left: 50px;">
 						<!-- Input Slider untuk Nilai Pengukuran Bunga Iris -->
 						<label for="range_sepal_length">Sepal Length (cm) </label>&nbsp;&rarr;&nbsp;
-						<span id="rangeVal_sepal_length">5.0<!-- Default value --></span>
-						<input type="range" min="4.3" max="7.9" step="0.05" value="5.0" class="slider" id="range_sepal_length" 
+						<span id="rangeVal_sepal_length"></span>
+						<input type="text" min="4.3" max="7.9" step="0.05" value="5.0" class="slider" id="range_sepal_length" 
 						onInput="$('#rangeVal_sepal_length').html($(this).val())">
 						</br>
 						<label for="range_sepal_width">Sepal Width (cm) </label>&nbsp;&rarr;&nbsp;
-						<span id="rangeVal_sepal_width">3.0<!-- Default value --></span>
-						<input type="range" min="2.0" max="4.4" step="0.05" value="3.0" class="slider" id="range_sepal_width" 
+						<span id="rangeVal_sepal_width"></span>
+						<input type="text" min="2.0" max="4.4" step="0.05" value="3.0" class="slider" id="range_sepal_width" 
 						onInput="$('#rangeVal_sepal_width').html($(this).val())">
 						</br>
 						<label for="range_petal_length">Petal Length (cm) </label>&nbsp;&rarr;&nbsp;
-						<span id="rangeVal_petal_length">3.0<!-- Default value --></span>
-						<input type="range" min="1.0" max="6.9" step="0.05" value="3.5" class="slider" id="range_petal_length" 
+						<span id="rangeVal_petal_length"></span>
+						<input type="text" min="1.0" max="6.9" step="0.05" value="3.5" class="slider" id="range_petal_length" 
 						onInput="$('#rangeVal_petal_length').html($(this).val())">
 						</br>
 						<label for="range_petal_width">Petal Width (cm) </label>&nbsp;&rarr;&nbsp;
-						<span id="rangeVal_petal_width">3.0<!-- Default value --></span>
-						<input type="range" min="0.1" max="2.5" step="0.05" value="1.0" class="slider" id="range_petal_width" 
+						<span id="rangeVal_petal_width"></span>
+						<input type="text" min="0.1" max="2.5" step="0.05" value="1.0" class="slider" id="range_petal_width" 
 						onInput="$('#rangeVal_petal_width').html($(this).val())">
 						</br>
 						<!-- Tombol Prediksi -->
@@ -132,43 +132,72 @@
 		<br>
 		<br>
 	</div>
-
+      <h2>Text To Speech Application</h2>
+	  <h3>Input Text</h3>
+    <div>
+	  <label for="pesan">Pesan Text :</label><br>
+	  <input type="text" id="pesan_text" name="pesan" value=""><br>
+	  <input id="tombol_submit" type="submit" value="Submit">
+	</div> 
+	
+	<div id="display_audio"></div>
+    
+    <script>
+		$(document).ready(function(){
+		  $("#tombol_submit").click(function(){
+			  var pesan_text = $('#pesan_text').val();
+			  if (pesan_text != ''){
+				try {
+					$.ajax({
+					  url:"{{url_for('apiTTS')}}",
+					  type:"POST",
+					  data:{"data":pesan_text},
+					  success:function(res){
+						res_data_url_audio = res['data']
+						
+						html_output  = '<audio controls id="file_audio">'
+						html_output += '<source src="' + res_data_url_audio + '" type="audio/mpeg">'
+						html_output += 'Your browser does not support the audio element.</audio>'
+						
+						document.getElementById("display_audio").innerHTML = html_output;
+						
+						var audio = document.getElementById("file_audio");
+						audio.play();
+					  }
+					});
+				}
+				catch(e) {
+					// None
+				}
+			  }
+		  });
+		});
+    </script>
+	
 	<!-- Bagian Halaman (Anggota Kelompok) -->
 	<div id="anggotaKelompok" class="container-fluid text-center">
 		<br>
 		<h2>ANGGOTA KELOMPOK</h2>
-		<h4>Tim Deployment dan Tim DS</h4>
+		<h4>Tim Goldfarb 5</h4>
 		<br>
 		<div class="row slideanim">
 			<div class="col-sm-4">
-				<span class="glyphicon glyphicon-user logo-small"></span>
-				<h4>BUDI</h4>
-				<p>Universitas Sumatera</p>
+				<img src={{ url_for('static', filename='/images/Raihan.PNG') }} id="rai"></img><br>
+				<h4>RAIHAN MUFADHAL</h4>
+				<p>Universitas Diponegoro</p>
 			</div>
 			<div class="col-sm-4">
-				<span class="glyphicon glyphicon-user logo-small"></span>
-				<h4>AYU</h4>
-				<p>Universitas Jawa dan Bali</p>
+				<img src={{ url_for('static', filename='/images/coba.jpg') }} id="wil"></img></img><br>
+				<h4>WILDAN ASSYIDIQ</h4>
+				<p>Universitas Teknologi Digital Indonesia</p>
 			</div>
 			<div class="col-sm-4">
-				<span class="glyphicon glyphicon-user logo-small"></span>
-				<h4>TONO</h4>
-				<p>Universitas Kalimantan</p>
+				<img src={{ url_for('static', filename='/images/yoyo.PNG') }} id="yoi"></img><br>
+				<h4>YOGI SAPUTRA</h4>
+				<p>Universitas Negeri Semarang</p>
 			</div>
 		</div>
 	    <br>
-	    <div class="row slideanim">
-			<div class="col-sm-6">
-				<span class="glyphicon glyphicon-user logo-small"></span>
-				<h4>PUTRA</h4>
-				<p>Universitas Sulawesi</p>
-			</div>
-			<div class="col-sm-6">
-				<span class="glyphicon glyphicon-user logo-small"></span>
-				<h4>PUTRI</h4>
-				<p>Universitas Kepulauan Nusa, Maluku dan Papua</p>
-			</div>
-	    </div>
 	</div>
 
 	<!-- Footer -->
@@ -176,7 +205,7 @@
 		<a href="#halamanku" title="To Top">
 			<span class="glyphicon glyphicon-chevron-up"></span>
 		</a>
-		<p>Orbit Future Academy <br> <a href="https://orbitfutureacademy.id/">orbitfutureacademy.id</a></p>
+		<p>Goldfarb 5 <br> <a href="https://orbitfutureacademy.id/">orbitfutureacademy.id</a></p>
 	</footer>
 
 	<!-- JavaScript untuk Animasi Scroll dan Prediksi Model -->

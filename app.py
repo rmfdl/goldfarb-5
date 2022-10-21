@@ -10,6 +10,8 @@
 from flask import Flask,render_template,request,jsonify
 import pandas as pd
 import numpy as np
+from gtts import gTTS
+import os
 from sklearn.tree import DecisionTreeClassifier
 from joblib import load
 
@@ -17,7 +19,6 @@ from joblib import load
 
 app   = Flask(__name__, static_url_path='/static')
 model = load('model_iris_dt.model')
-
 # =[Routing]=====================================
 
 # [Routing untuk Halaman Utama atau Home]	
@@ -70,14 +71,39 @@ def apiDeteksi():
 			"gambar_prediksi" : '/static/images/iris_setosa.jpg'
 		})
 		'''
-
 # =[Main]========================================
 
-if __name__ == '__main__':
-	
+
 	# Load model yang telah ditraining
 	# model = load('model_iris_dt.model')
+audio_index = None
 
+@app.route("/")
+def index():
+	return render_template("index.html")
+	
+@app.route("/api/tts",methods=['POST'])
+def apiTTS():
+	global audio_index
+	data_pesan = ""
+	if request.method=='POST':
+		data_pesan = request.form['data']
+		
+		# Convert Text to Speech
+		audio = gTTS(text=data_pesan, lang='id', slow=False)
+		  
+		# Saving Audio (mp3)
+		audio_url = "/static/audio/test_id_" + str(audio_index) + ".mp3"
+		audio.save("." + audio_url)
+		
+		audio_index += 1
+		
+		return jsonify({
+			"data": audio_url,
+		})
+
+if __name__=='__main__':
+	audio_index = 1
 	# Run Flask di localhost 
 	app.run(host="localhost", port=5000, debug=True)
 	
