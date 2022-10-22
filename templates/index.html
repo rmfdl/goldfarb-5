@@ -19,7 +19,7 @@
 	<script src={{ url_for('static', filename='/js/bootstrap_3.4.1.min.js') }} ></script>
 </head>
 
-<body id="halamanku" data-spy="scroll" data-target=".navbar" data-offset="60">
+<bo id="halamanku" data-spy="scroll" data-target=".navbar" data-offset="60">
 
 	<!-- Navigation Bar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -132,12 +132,14 @@
 		<br>
 		<br>
 	</div>
-      <h2>Text To Speech Application</h2>
-	  <h3>Input Text</h3>
+	<div>
+      <h2 style="margin-left: 50px;">Text To Speech Application</h2>
+	  <h3 style="margin-left: 50px;">Input Text</h3>
     <div>
-	  <label for="pesan">Pesan Text :</label><br>
-	  <input type="text" id="pesan_text" name="pesan" value=""><br>
-	  <input id="tombol_submit" type="submit" value="Submit">
+		
+	  <label for="pesan" style="margin-left: 50px;">Pesan Text :</label><br>
+	  <input type="text" id="pesan_text" name="pesan" value="" style="margin-left: 50px;"><br>
+	  <input style="margin-left: 50px;" id="tombol_submit" type="submit" value="Submit">
 	</div> 
 	
 	<div id="display_audio"></div>
@@ -173,7 +175,7 @@
 		  });
 		});
     </script>
-	
+	</div>
 	<!-- Bagian Halaman (Anggota Kelompok) -->
 	<div id="anggotaKelompok" class="container-fluid text-center">
 		<br>
