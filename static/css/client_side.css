@@ -58,7 +58,7 @@ h4 {
 }
 
 .bg-blue {
-	background-color: #00d491;
+	background-color: #04f2a7;
 }
 
 .logo-small {
@@ -83,17 +83,17 @@ h4 {
 }
 
 .navbar li a, .navbar .navbar-brand {
-	color: #fff !important;
+	color: rgb(180, 230, 230) !important;
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
 	color: #ff43a4 !important;
-	background-color: #fff !important;
+	background-color: rgb(173, 230, 231) !important;
 }
 
 .navbar-default .navbar-toggle {
 	border-color: transparent;
-	color: #fff !important;
+	color: rgb(179, 231, 231) !important;
 }
   
 footer .glyphicon {
@@ -141,7 +141,7 @@ footer .glyphicon {
   width: 100%;
   height: 30px;
   border-radius: 5px;  
-  background: #aef3f9;
+  background: #00ffaa;
   outline: none;
   -webkit-transition: .2s;
   transition: opacity .2s;
